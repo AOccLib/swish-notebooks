@@ -1,0 +1,86 @@
+<div class="notebook">
+
+<div class="nb-cell markdown" name="md1">
+## Knowledge-Based Agents
+
+Let's create a *Knowledge-Base Agent*. The base will contain knowledge about famous people and their families.
+
+#### 1. Adding information to the agent's knowledge base
+
+First, let's TELL the agent some information. We'll tell one *fact* and one *general rule* to start its *knowledge base*.
+</div>
+
+<div class="nb-cell program" name="p1">
+% KNOWLEDGE BASE
+% facts
+mother(tom_hanks,janet_frager). % TELL: Tom Hanks' mother was Janet Marylyn Frager
+% rules
+son(Y,X) :- mother(X,Y). % TELL: If X is the mother of Y, then Y is the son of X.
+</div>
+
+<div class="nb-cell markdown" name="md4">
+#### 2. Asking the agent
+
+Now, let's ASK our agent for some information. This is done through a *query*.
+
+We'll start with a simple query that involves retrieving a fact from the knowledge base.
+</div>
+
+<div class="nb-cell query" name="q2">
+% ASK: who's the son of Janet Marylyn Frager?
+mother(tom_hanks,X).
+</div>
+
+<div class="nb-cell markdown" name="md2">
+Now, let's ASK something more interesting. 
+
+Let's ask for some information that is not already present in the base. 
+
+The agent will use it's *inference engine* to find the answer.
+</div>
+
+<div class="nb-cell query" name="q1">
+% ASK: who's the son of Janet Marylyn Frager?
+son(janet_frager,X). 
+</div>
+
+<div class="nb-cell markdown" name="md3">
+#### 3. Can ChatGPT answer these questions?
+
+What if we query ChatGPT in a similar way? 
+
+We can't access ChatGPTs "knowledge base": it doesn't use an explicit set of facts and rules that we can inspect.
+
+But we can check whether it reasons nicely with the "knowledge" it has.
+
+*Query 1*: "Who's Tom Hanks mother?"
+
+https://chat.openai.com/c/9359731b-51c3-4e06-bfc6-300915619819
+
+*Query 2*: "Suppose X is a woman, and Y is a man. If X is the mother of Y, is Y the son of X? Answer Yes or No"
+
+https://chat.openai.com/c/2b6fb54d-f353-4183-8598-5eba159cbe33
+
+*Query 3*: "Who's Janet Marylyn Frager son?"
+
+https://chat.openai.com/c/f80c4d2d-36ac-4593-97eb-c4e91f3773d3
+
+</div>
+
+<div class="nb-cell markdown" name="md5">
+This is known as the *reversal curse*. It is a surprising failure of the current paradigm of large language models (LLMs) to make basic logical deductions from the training documents. If a model is trained on a sentence of the form “A is B”, it will not automatically generalize to the reverse direction “B is A”.
+
+The Reversal Curse does not apply for *in-context learning* (roughly speaking, in-context learning involves the ability to use information present in the prompt to generate the correct answer).
+
+Curious about it? Here's the research paper:
+
+https://arxiv.org/pdf/2309.12288.pdf
+
+
+</div>
+
+<div class="nb-cell markdown" name="md6">
+#### A more complex example
+</div>
+
+</div>
